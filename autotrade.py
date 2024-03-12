@@ -152,8 +152,10 @@ def make_decision_and_execute():
 
 if __name__ == "__main__":
     make_decision_and_execute()
-    # 언제 한 번씩 거래할지 (일단 1시간에 한 번씩)
-    schedule.every().hour.at(":01").do(make_decision_and_execute)
+    # 1시간에 한 번씩 거래 실행
+    # schedule.every().hour.at(":01").do(make_decision_and_execute)
+    # 6시간에 한 번씩 거래 실행
+    schedule.every(6).hours.do(make_decision_and_execute)
 
     while True:
         schedule.run_pending()
