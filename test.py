@@ -5,5 +5,4 @@ load_dotenv()
 
 upbit = pyupbit.Upbit(os.getenv("UPBIT_ACCESS_KEY"), os.getenv("UPBIT_SECRET_KEY"))
 
-print(upbit.get_balance("KRW-XRP"))
 print(upbit.get_balance("KRW"))
