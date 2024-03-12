@@ -30,7 +30,6 @@ def get_current_status():
     current_status = {'current_time': current_time, 'orderbook': orderbook, 'btc_balance': btc_balance, 'krw_balance': krw_balance, 'btc_avg_buy_price': btc_avg_buy_price}
     return json.dumps(current_status)
 
-
 def fetch_and_prepare_data():
     # Fetch data
     df_daily = pyupbit.get_ohlcv("KRW-BTC", "day", count=30)
@@ -89,6 +88,7 @@ def get_instructions(file_path):
     except Exception as e:
         print("An error occurred while reading the file:", e)
 
+# gpt4로 판단
 def analyze_data_with_gpt4(data_json):
     instructions_path = "instructions.md"
     try:
@@ -133,6 +133,7 @@ def execute_sell():
     except Exception as e:
         print(f"Failed to execute sell order: {e}")
 
+# 데이터를 가져옴
 def make_decision_and_execute():
     print("Making decision and executing...")
     data_json = fetch_and_prepare_data()
@@ -150,6 +151,7 @@ def make_decision_and_execute():
 
 if __name__ == "__main__":
     make_decision_and_execute()
+    # 언제 한 번씩 거래할지 (일단 1시간에 한 번씩)
     schedule.every().hour.at(":01").do(make_decision_and_execute)
 
     while True:
